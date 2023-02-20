@@ -10,22 +10,27 @@
       <input type="password" name="password" id="password" v-model="data.password">
     </div>
     
-    <div class="age-group">
-      <p>Age group</p> 
+    <div class="fav-color">
+      <p>Favorite color</p> 
       
       <div>
-        <input type="radio" name="formRadio" id="radioYes" value="Yes" v-model="data.radio">
-        <label for="radioYes">Yes</label>
+        <input type="radio" name="colorRed" id="colorRed" value="Red" v-model="data.color">
+        <label for="colorRed">Red</label>
       </div>
   
       <div>
-        <input type="radio" name="formRadio" id="radioNo" value="No" v-model="data.radio">
-        <label for="radioNo">No</label>
+        <input type="radio" name="colorGreen" id="colorGreen" value="Green" v-model="data.color">
+        <label for="colorGreen">Green</label>
       </div>
       
       <div>
-        <input type="radio" name="formRadio" id="radioMaybe" value="Maybe" v-model="data.radio">
-        <label for="radioMaybe">Maybe</label>
+        <input type="radio" name="colorBlue" id="colorBlue" value="Blue" v-model="data.color">
+        <label for="colorBlue">Blue</label>
+      </div>
+
+      <div>
+        <input type="radio" name="colorOther" id="colorOther" value="Other" v-model="data.color">
+        <label for="colorOther">Other</label>
       </div>
     </div>
 
@@ -37,13 +42,13 @@
     </div>
 
     <div>
-      <label for="formTextarea">Bio</label>
-      <textarea id="formTextarea" name="formTextarea" v-model="data.bio"></textarea>
+      <label for="bio">Bio</label>
+      <textarea id="bio" name="bio" v-model="data.bio"></textarea>
     </div>
 
     <div class="agree-to-terms">
-      <label for="formCheckbox">Agree to Terms and Conditions</label>
-      <input type="checkbox" id="formCheckbox" name="formCheckbox" v-model="data.checkbox">
+      <label for="terms">Agree to Terms and Conditions</label>
+      <input type="checkbox" id="terms" name="terms" v-model="data.terms">
     </div>
     
     <button type="reset">Reset</button>
@@ -57,12 +62,12 @@ export default {
   data() {
     return {
       data: {
-        username: "",
-        password: "",
-        radio: undefined,
-        city: "",
-        bio: "",
-        checkbox: false,
+        username: "" as string,
+        password: "" as string,
+        color: undefined as any[] | undefined,
+        city: "" as string,
+        bio: "" as string,
+        terms: false as boolean,
       },
       cities: [
         "", "Alytus", "Jonava", "Kaunas", "Klaipėda", "Marijampolė", "Mažeikiai", "Panevėžys", "Šiauliai", "Utena", "Vilnius"
@@ -73,10 +78,13 @@ export default {
     reset() {
       this.data.username = "";
       this.data.password = "";
-      this.data.radio = undefined;
+      this.data.color = undefined;
       this.data.city = "";
       this.data.bio = "";
-      this.data.checkbox = false;
+      this.data.terms = false;
+    },
+    submit() {
+      
     }
   }
 }
@@ -99,11 +107,11 @@ form * {
   color: var(--text);
 }
 
-form div:not(.age-group) label {
+form div:not(.fav-color) label {
   display: block;
 }
 
-.age-group div {
+.fav-color div {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -129,11 +137,6 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
 
 textarea {
   resize: none;
-  height: 8em;
-}
-
-.output {
-  display: flex;
-  flex-direction: column;
+  height: 5em;
 }
 </style>
